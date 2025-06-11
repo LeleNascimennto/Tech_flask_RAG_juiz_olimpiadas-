@@ -1,0 +1,3 @@
+FLASK_APP=chatmain.py
+FLASK_ENV=development
+GEMINI_API_KEY=AIzaSyCeypkMzMu2jZIdkAruZBNZc8orKUnw3z8

@@ -1,0 +1,12 @@
+<form method="POST">
+  <label>Pergunta:</label>
+  <input name="mensagem">
+  <button type="submit">Enviar</button>
+</form>
+
+{% if resultado %}
+  <h3>Resposta do Tutor:</h3>
+  <p>{{ resultado.resposta_tutor }}</p>
+  <h3>Avaliação do Juiz:</h3>
+  <p>{{ resultado.avaliacao }}</p>
+{% endif %}
