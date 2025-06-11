@@ -1,5 +1,7 @@
-# Este script Python no nivel mais alto da aplicacao
-# define a instancia da aplicaçao Flask. Por enquanto, ele 
-# tem somente uma linha que importa a instancia da aplicacao.
-# A aplicacao Flask chama-se 'app' e faz parte do pacote 'app'.
-from app import app
+from flask import Flask
+from flask_chat.routes import app as routes_app
+from ..agents.tutor_agent import responder_com_tutor
+from flask_socketio import SocketIO 
+
+if __name__ == "__main__":
+    socketio.run(app, debug=True)

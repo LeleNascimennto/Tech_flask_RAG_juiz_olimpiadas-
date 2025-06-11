@@ -1,6 +1,10 @@
 from flask import Blueprint, render_template, request
 from datetime import datetime
 import os
+from .agents.tutor_agent import responder_com_tutor
+from .agents.juiz_agent import avaliar_resposta
+from .rag.rag_chain import responder_rag
+
 
 bp = Blueprint("chat", __name__)
 
@@ -55,3 +59,34 @@ def atendente():
             registrar_log("atendente", "CONVERSA ENCERRADA PELO ATENDENTE")
     historico = carregar_historico("atendente")
     return render_template("atendente.html", historico=historico)
+
+@bp.route("/ia", methods=["POST"])
+def ia():
+    pergunta = request.form.get("mensagem")
+
+    if pergunta:
+        registrar_log("usuario", pergunta)
+
+        resposta_tutor_rag = responder_rag(pergunta)
+        avaliacao = avaliar_resposta(pergunta, resposta_tutor_rag)
+        registrar_log("atendente", resposta_tutor_rag)
+        registrar_log("atendente", f"AVALIAÇÃO DO JUIZ: {avaliacao}")
+
+
+    historico_usuario = carregar_historico("usuario")
+    historico_atendente = carregar_historico("atendente")
+    
+    return render_template("usuario.html", historico=historico_usuario + historico_atendente)
+
+@bp.route("/avaliar", methods=["GET", "POST"])
+def avaliar():
+    resultado = None
+    if request.method == "POST":
+        pergunta = request.form["mensagem"]
+        resposta_tutor = responder_com_tutor(pergunta)
+        resultado = {
+            "pergunta": pergunta,
+            "resposta_tutor": resposta_tutor,
+            "avaliacao": avaliar_resposta(pergunta, resposta_tutor)
+        }
+    return render_template("avaliar.html", resultado=resultado)

@@ -1,3 +1,15 @@
 {% extends "base.html" %}
 {% block titulo %}Usuário{% endblock %}
 {% block cabecalho %}Bem-vindo, Usuário!{% endblock %}
+
+<form method="POST" action="/ia">
+  <input type="text" name="mensagem" placeholder="Pergunte algo..." required>
+  <button type="submit" name="enviar">Perguntar ao Tutor IA</button>
+</form>
+
+<hr>
+
+{% for linha in historico %}
+  <p>{{ linha|safe }}</p>
+{% endfor %}
+
