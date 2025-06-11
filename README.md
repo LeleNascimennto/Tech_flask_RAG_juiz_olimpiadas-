@@ -1,3 +1,4 @@
+
 # TECH_flask_chat
 Flask App as an educational lab for AI and IoT.
 Aplicação Flask como laboratório didático para IA e IoT.
@@ -6,7 +7,6 @@ With many thanks to Miguel Grinberg (https://github.com/miguelgrinberg) for his 
 
 AI-aided development.
 
-___
 
 ## Aplicação inicial
 O objetivo desta versão é apresentar o framework Flask.
@@ -36,3 +36,6 @@ Esta aplicação consiste em dois clientes de chat: usuario e atendente e cada c
 ## Quando usar nas próximas vezes, digite:
 * `.venv\Scripts\Activate`
 * `flask run`
+# Tech_flask_RAG_juiz_olimpiadas-
+Projeto onde devemos integrar um chat flask com RAG e juiz de IA. O tema escolhido foi as olimpíadas. 
+
