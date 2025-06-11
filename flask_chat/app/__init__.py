@@ -1,7 +1,9 @@
-from flask import Flask, render_template
+from flask import Flask
 from flask_socketio import SocketIO 
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 # a aplicacao que estah sendo implementada eh uma instancia da classe Flask
 app = Flask(__name__)
 
